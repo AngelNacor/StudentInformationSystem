@@ -83,7 +83,7 @@ namespace SIS_UI
                 int semesterChoice = Convert.ToInt32(Console.ReadLine());
 
                 switch (semesterChoice)
-               		 {
+               		{
                     case 1:
                         ViewFirstYearFirstSemester();
                         break;
@@ -100,7 +100,7 @@ namespace SIS_UI
                         Console.WriteLine("Invalid semester choice.");
                         break;
                 	}
-   	   	     }
+   	   	    }
         }
     }
 }
