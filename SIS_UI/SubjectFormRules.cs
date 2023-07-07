@@ -21,9 +21,9 @@ namespace SIS_RULES
                         case 0: break;
                         case 1: //overall subject code description
                         SubjectForm.ViewFirstYearFirstSemester(), 
-                        SubjectForm.ViewFirstYearSeconeSemester();
+                        SubjectForm.ViewFirstYearSecondSemester();
                         SubjectForm.ViewSecondYearFirstSemester();
-                        SubjectForm.ViewSecondYearSeconrSemester();
+                        SubjectForm.ViewSecondYearSecondSemester();
                         break;
                         case 2: //first year first semester
                         SubjectForm.ViewFirstYearFirstSemester();
