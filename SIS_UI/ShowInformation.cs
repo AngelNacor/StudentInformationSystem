@@ -41,5 +41,25 @@ namespace SIS_UI
                     $"Subject Held: {facultyInfo.subjectHeld}\n" +
                     $"Email Address: {facultyInfo.email}\n");
         }
+
+        public static void showAdminInfo(AdminInfo adminInfo)
+        {
+            Console.WriteLine($"\nAdmin Number: {adminInfo.adminNumber}\n" +
+                    $"Admin Name: {adminInfo.adminName}\n" +
+                    $"Email Address: {adminInfo.emailAddress}\n");
+        }
+
+        public static void showSchedule(Schedule sched)
+        {
+            Console.WriteLine($"\nSubject Code: {sched.subjectCode}\n"+
+                $"Description: {sched.description}\n" +
+                $"Lecture : {sched.lecture}\n"+
+                $"Laboratory: {sched.laboratory}\n"+
+                $"Unit: {sched.unit}\n"+
+                $"Time: {sched.time}\n"+
+                $"Day: {sched.day}\n"+
+                $"Instructor: {sched.instructor}\n");
+        }
+
     }
 }

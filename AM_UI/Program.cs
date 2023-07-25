@@ -115,6 +115,10 @@ namespace AM_UI
                 {
                     FacultyFormRules.actionFacultyWelcomePage();
                     return "";
+                }else if(account != null && type == 3)
+                {
+                    AdminFormRules.actionAdminFacultyWelcomePage();
+                    return "";
                 }
                 else
                 { return "Incorrect Credentials."; }

@@ -28,13 +28,12 @@ namespace SIS_DATA
         StudentPersonalInfo student = new StudentPersonalInfo();
         StudentInfo studentInfo = new StudentInfo();
         FacultyInfo facultyInfo = new FacultyInfo();
+        AdminInfo adminInfo = new AdminInfo();
+        Schedule sched = new Schedule();
 
         //method for viewing student personal information
         public void showStudentPersonalInfo(string sisAccountNumber)
         {
-            //public string sisAccount = 
-            //StudentPersonalInfo student = new StudentPersonalInfo();
-            //sqlConnection.Open();
             string sqlQuery = "SELECT * FROM StudentPersonalInfo where SISAccountNumber = @SISAccountNumber";
             SqlCommand command = new SqlCommand(sqlQuery, sqlConnection);
             sqlConnection.Open();
@@ -55,31 +54,6 @@ namespace SIS_DATA
 
                 //SIS_UI
                 ShowInformation.ShowStudentPersonalInfo(student);
-                //Console.WriteLine($"\nSIS Account Number: {student.SISAccountNumber}\n" +
-                //    $"Full Name: {student.fullname}\n" +
-                //    $"Gender: {student.Gender}\n" +
-                //    $"Date Of Birth: {student.DateofBirth}\n" +
-                //    $"Place Of Birth: {student.placeofBirth}\n" +
-                //    $"Mobile Number: {student.mobileNo}\n" +
-                //    $"Email Address: {student.emailAddress}\n" +
-                //    $"Residential Address: {student.residentialAddress}\n" +
-                //    $"Permanent Address: {student.permanentAdress}");
-                
-                /*string formattedInfo = $"\nStudent Personal Information\n" +
-                    $"SIS Account Number: {student.SISAccountNumber}\n" +
-                    $"Full Name: {student.fullname}\n" +
-                    $"Gender: {student.Gender}\n" +
-                    $"Date Of Birth: {student.DateofBirth}\n" +
-                    $"Place Of Birth: {student.placeofBirth} \n" +
-                    $"Mobile Number: {student.mobileNo} \n" +
-                    $"Email Address: {student.emailAddress} \n" +
-                    $"Residential Address: {student.residentialAddress} \n" +
-                    $"Permanent Address: {student.permanentAdress} \n" ;
-                Trace.WriteLine(formattedInfo); */
-
-                //return formattedInfo;
-
-                //sqlConnection.Close();
             }
             sqlConnection.Close();
         }
@@ -103,11 +77,6 @@ namespace SIS_DATA
 
                 //SIS_UI
                 ShowInformation.ShowStudentInfo(studentInfo);
-                //Console.WriteLine($"\nSIS Account Number: {studentInfo.SISAccountNumber}\n" +
-                //    $"Full Name: {studentInfo.fullName}\n" +
-                //    $"Course: {studentInfo.course}\n" +
-                //    $"Year: {studentInfo.year}\n" +
-                //    $"Section: {studentInfo.section}\n");
             }
             sqlConnection.Close();
         }
@@ -130,14 +99,177 @@ namespace SIS_DATA
 
                 //SIS_UI
                 ShowInformation.showFacultyInfo(facultyInfo);
-                //Console.WriteLine($"\nFaculty Number: {facultyInfo.facultyNumber}\n" +
-                //    $"Faculty Name: {facultyInfo.facultyName}\n" +
-                //    $"Subject Held: {facultyInfo.subjectHeld}\n" +
-                //    $"Email Address: {facultyInfo.email}\n"); 
-
             }
             sqlConnection.Close();
         }
+
+        //method to view admin info
+        public void showAdminInfo(string adminNumber)
+        {
+            string sqlQuery = "SELECT * FROM AdminInfo where AdminNumber = @AdminNumber";
+            SqlCommand command = new SqlCommand(sqlQuery, sqlConnection);
+            sqlConnection.Open();
+            command.Parameters.AddWithValue("@AdminNumber", adminNumber);
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                adminInfo.adminNumber = reader.GetString(1);
+                adminInfo.adminName = reader.GetString(2);
+                adminInfo.emailAddress = reader.GetString(3);
+
+                ShowInformation.showAdminInfo(adminInfo);
+            }
+            sqlConnection.Close();
+        }
+
+        //method to call monday schedule
+        public void viewMondaySchedule()
+        {
+            String Day = "Monday";
+            string sqlQuery = "SELECT * FROM Schedule where Day = @Day";
+            SqlCommand command = new SqlCommand(sqlQuery,sqlConnection);
+            sqlConnection.Open();
+            command.Parameters.AddWithValue("@Day", Day);
+            SqlDataReader reader = command.ExecuteReader();
+
+           
+            
+                if (reader.HasRows)
+                {
+                while (reader.Read())
+                {
+                    sched.subjectCode = reader.GetString(1);
+                    sched.description = reader.GetString(2);
+                    sched.lecture = reader.GetInt32(3);
+                    sched.laboratory = reader.GetInt32(4);
+                    sched.unit = reader.GetInt32(5);
+                    sched.time = reader.GetString(6);
+                    sched.day = reader.GetString(7);
+                    sched.instructor = reader.GetString(8);
+
+                    ShowInformation.showSchedule(sched);
+                }
+                }
+                else
+                {
+                    StudentForm.scheduleMonday();
+                }
+            
+            sqlConnection.Close();
+
+        }
+
+        public void viewTuesdaySchedule()
+        {
+            String Day = "Tuesday";
+            string sqlQuery = "SELECT * FROM Schedule where Day = @Day";
+            SqlCommand command = new SqlCommand(sqlQuery, sqlConnection);
+            sqlConnection.Open();
+            command.Parameters.AddWithValue("@Day", Day);
+            SqlDataReader reader = command.ExecuteReader();
+
+
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    sched.subjectCode = reader.GetString(1);
+                    sched.description = reader.GetString(2);
+                    sched.lecture = reader.GetInt32(3);
+                    sched.laboratory = reader.GetInt32(4);
+                    sched.unit = reader.GetInt32(5);
+                    sched.time = reader.GetString(6);
+                    sched.day = reader.GetString(7);
+                    sched.instructor = reader.GetString(8);
+
+                    ShowInformation.showSchedule(sched);
+                }
+            }
+            else
+            {
+                StudentForm.scheduleMonday();
+            }
+
+            sqlConnection.Close();
+
+        }
+
+        public void viewThursdaySchedule()
+        {
+            String Day = "Thursday";
+            string sqlQuery = "SELECT * FROM Schedule where Day = @Day";
+            SqlCommand command = new SqlCommand(sqlQuery, sqlConnection);
+            sqlConnection.Open();
+            command.Parameters.AddWithValue("@Day", Day);
+            SqlDataReader reader = command.ExecuteReader();
+
+
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    sched.subjectCode = reader.GetString(1);
+                    sched.description = reader.GetString(2);
+                    sched.lecture = reader.GetInt32(3);
+                    sched.laboratory = reader.GetInt32(4);
+                    sched.unit = reader.GetInt32(5);
+                    sched.time = reader.GetString(6);
+                    sched.day = reader.GetString(7);
+                    sched.instructor = reader.GetString(8);
+
+                    ShowInformation.showSchedule(sched);
+                }
+            }
+            else
+            {
+                StudentForm.scheduleMonday();
+            }
+
+            sqlConnection.Close();
+
+        }
+
+        public void viewSaturdaySchedule()
+        {
+            String Day = "Saturday";
+            string sqlQuery = "SELECT * FROM Schedule where Day = @Day";
+            SqlCommand command = new SqlCommand(sqlQuery, sqlConnection);
+            sqlConnection.Open();
+            command.Parameters.AddWithValue("@Day", Day);
+            SqlDataReader reader = command.ExecuteReader();
+
+
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    sched.subjectCode = reader.GetString(1);
+                    sched.description = reader.GetString(2);
+                    sched.lecture = reader.GetInt32(3);
+                    sched.laboratory = reader.GetInt32(4);
+                    sched.unit = reader.GetInt32(5);
+                    sched.time = reader.GetString(6);
+                    sched.day = reader.GetString(7);
+                    sched.instructor = reader.GetString(8);
+
+                    ShowInformation.showSchedule(sched);
+                }
+            }
+            else
+            {
+                StudentForm.scheduleMonday();
+            }
+
+            sqlConnection.Close();
+
+        }
+
+        //method for viewing all subject for students
+
 
         //method for updating personal information
         public void updatePlaceOfBirth(string sisAccountNumber)
@@ -148,7 +280,6 @@ namespace SIS_DATA
 
             string sqlQuery = "UPDATE StudentPersonalInfo Set PlaceOfBirth = @PlaceOfBirth where SISAccountNumber = @SISAccountNumber";
             SqlCommand command = new SqlCommand(sqlQuery, sqlConnection);
-            //sqlConnection.Open();
             command.Parameters.AddWithValue("@PlaceOfBirth", placeOfBirth);
             command.Parameters.AddWithValue("@SISAccountNumber", sisAccountNumber);
             command.ExecuteNonQuery();
@@ -169,12 +300,10 @@ namespace SIS_DATA
 
             string sqlQuery = "UPDATE StudentPersonalInfo Set MobileNo = @MobileNo where SISAccountNumber = @SISAccountNumber";
             SqlCommand command = new SqlCommand(sqlQuery, sqlConnection);
-            //sqlConnection.Open();
             command.Parameters.AddWithValue("@MobileNo", mobileNumber);
             command.Parameters.AddWithValue("@SISAccountNumber", sisAccountNumber);
             command.ExecuteNonQuery();
 
-            //Console.WriteLine("\nPersonal information updated successfully!");
             String message = "Mobile Number updated successfully";
             Debug.Print(message);
 
@@ -190,12 +319,10 @@ namespace SIS_DATA
 
             string sqlQuery = "UPDATE StudentPersonalInfo Set EmailAddress = @EmailAddress where SISAccountNumber = @SISAccountNumber";
             SqlCommand command = new SqlCommand(sqlQuery, sqlConnection);
-            //sqlConnection.Open();
             command.Parameters.AddWithValue("@EmailAddress", emailAddress);
             command.Parameters.AddWithValue("@SISAccountNumber", sisAccountNumber);
             command.ExecuteNonQuery();
 
-            //Console.WriteLine("\nPersonal information updated successfully!");
             String message = "Email Address updated successfully";
             Debug.Print(message);
 
@@ -211,12 +338,10 @@ namespace SIS_DATA
 
             string sqlQuery = "UPDATE StudentPersonalInfo Set ResidentialAddress = @ResidentialAddress where SISAccountNumber = @SISAccountNumber";
             SqlCommand command = new SqlCommand(sqlQuery, sqlConnection);
-            //sqlConnection.Open();
             command.Parameters.AddWithValue("@ResidentialAddress", resAddress);
             command.Parameters.AddWithValue("@SISAccountNumber", sisAccountNumber);
             command.ExecuteNonQuery();
 
-            //Console.WriteLine("\nPersonal information updated successfully!");
             String message = "Residential Address updated successfully";
             Debug.Print(message);
 
@@ -232,12 +357,10 @@ namespace SIS_DATA
 
             string sqlQuery = "UPDATE StudentPersonalInfo Set PermanentAddress = @PermanentAddress where SISAccountNumber = @SISAccountNumber";
             SqlCommand command = new SqlCommand(sqlQuery, sqlConnection);
-            //sqlConnection.Open();
             command.Parameters.AddWithValue("@PermanentAddress", permAddress);
             command.Parameters.AddWithValue("@SISAccountNumber", sisAccountNumber);
             command.ExecuteNonQuery();
 
-            //Console.WriteLine("\nPersonal information updated successfully!");
             String message = "Permanent Address updated successfully";
             Debug.Print(message);
 
