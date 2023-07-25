@@ -34,15 +34,59 @@ namespace SIS_RULES
                         break;
 
                     case 2:
+                        status = AdminForm.adminSchedule();
+                        switch (status)
+                        {
+                            case 0://cancel
+                                actionAdminFacultyWelcomePage();
+                                break;
 
+                            case 1://view all schedule
+                                sql.viewAdminSchedule();
+                                break;
+
+                            case 2://add
+                                sql.addSchedule();
+                                break;
+
+                            case 3://update
+                                status = AdminForm.updateSchedule();
+                                switch (status)
+                                {
+                                    case 0://cancel
+
+                                        break;
+
+                                    case 1://time
+                                        sql.updateTime();
+                                        break;
+
+                                    case 2://day
+                                        sql.updateDay();
+                                        break;
+
+                                    case 3://instructor
+                                        sql.updateInstructor();
+                                        break;
+
+                                }
+                                break;
+
+                            case 4://delete
+                                sql.deleteSchedule();
+                                break;
+                        }
+                        actionAdminFacultyWelcomePage();
                         break;
 
                     case 3:
 
+                        actionAdminFacultyWelcomePage();
                         break;
 
                     case 4:
 
+                        actionAdminFacultyWelcomePage();
                         break;
                 }
             } while (status == null);

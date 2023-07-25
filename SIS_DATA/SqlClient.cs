@@ -267,6 +267,167 @@ namespace SIS_DATA
 
         }
 
+        //method for viewing all schedule for admin
+        public void viewAdminSchedule()
+        {
+            string sqlQuery = "SELECT * FROM Schedule";
+            SqlCommand command = new SqlCommand(sqlQuery, sqlConnection);
+            sqlConnection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                sched.subjectCode = reader.GetString(1);
+                sched.description = reader.GetString(2);
+                sched.lecture = reader.GetInt32(3);
+                sched.laboratory = reader.GetInt32(4);
+                sched.unit = reader.GetInt32(5);
+                sched.time = reader.GetString(6);
+                sched.day = reader.GetString(7);
+                sched.instructor = reader.GetString(8);
+
+                ShowInformation.showSchedule(sched);
+            }
+            sqlConnection.Close();
+        }
+
+        //add schedule
+        public void addSchedule()
+        {
+            int no = AdminForm.addNo();
+            string subjcode = AdminForm.addSubjectCode();
+            string desc = AdminForm.addDescription();
+            int lec = AdminForm.addLecture();
+            int lab = AdminForm.addLaboratory();
+            int unit = AdminForm.addUnit();
+            string time = AdminForm.addSchedule();
+            string day = AdminForm.addDay();
+            string instructor = AdminForm.addInstructor();
+
+            string sqlQuery = "INSERT INTO Schedule(No#,SubjectCode,Description,Lec,Lab,Unit,Schedule,day,instructor)VALUES(@No#,@SubjectCode,@Description,@Lec,@Lab,@Unit,@Schedule,@day,@instructor)";
+            SqlCommand command = new SqlCommand(sqlQuery, sqlConnection);
+            sqlConnection.Open();
+
+            command.Parameters.AddWithValue("@No#", no);
+            command.Parameters.AddWithValue("@SubjectCode", subjcode);
+            command.Parameters.AddWithValue("@Description", desc);
+            command.Parameters.AddWithValue("@Lec", lec);
+            command.Parameters.AddWithValue("@Lab", lab);
+            command.Parameters.AddWithValue("@Unit", unit);
+            command.Parameters.AddWithValue("@Schedule", time);
+            command.Parameters.AddWithValue("@day", day);
+            command.Parameters.AddWithValue("@instructor", instructor);
+            int rowsAffected = command.ExecuteNonQuery();
+            
+            if(rowsAffected > 0)
+            {
+                AdminForm.addSuccess();
+            }
+            sqlConnection.Close();
+        }
+
+        //update schedule
+        public void updateTime()
+        {
+            sqlConnection.Open();
+
+            string subjectCode = AdminForm.verifySubjCode();
+            string time = AdminForm.updateTime();
+
+            string sqlQuery = "UPDATE Schedule set Schedule = @Schedule WHERE SubjectCode = @SubjectCode";
+            SqlCommand command = new SqlCommand(@sqlQuery, sqlConnection);
+           
+            command.Parameters.AddWithValue("@Schedule", time);
+            command.Parameters.AddWithValue("@SubjectCode", subjectCode);
+            int rowAffected = command.ExecuteNonQuery();
+
+            if (rowAffected > 0)
+            {
+                AdminForm.updateSuccess();
+            }
+            else
+            {
+                AdminForm.updatedError();
+            }
+
+            sqlConnection.Close();
+        }
+
+        public void updateDay()
+        {
+            sqlConnection.Open();
+
+            string subjectCode = AdminForm.verifySubjCode();
+            string day = AdminForm.updateDay();
+
+            string sqlQuery = "UPDATE Schedule set day = @day WHERE SubjectCode = @SubjectCode";
+            SqlCommand command = new SqlCommand(@sqlQuery, sqlConnection);
+
+            command.Parameters.AddWithValue("@day", day);
+            command.Parameters.AddWithValue("@SubjectCode", subjectCode);
+            int rowAffected = command.ExecuteNonQuery();
+
+            if (rowAffected > 0)
+            {
+                AdminForm.updateSuccess();
+            }
+            else
+            {
+                AdminForm.updatedError();
+            }
+
+            sqlConnection.Close();
+        }
+
+        public void updateInstructor()
+        {
+            sqlConnection.Open();
+
+            string subjectCode = AdminForm.verifySubjCode();
+            string prof = AdminForm.updateInstructor();
+
+            string sqlQuery = "UPDATE Schedule set instructor = @instructor WHERE SubjectCode = @SubjectCode";
+            SqlCommand command = new SqlCommand(@sqlQuery, sqlConnection);
+
+            command.Parameters.AddWithValue("@instructor", prof);
+            command.Parameters.AddWithValue("@SubjectCode", subjectCode);
+            int rowAffected = command.ExecuteNonQuery();
+
+            if (rowAffected > 0)
+            {
+                AdminForm.updateSuccess();
+            }
+            else
+            {
+                AdminForm.updatedError();
+            }
+
+            sqlConnection.Close();
+        }
+
+        public void deleteSchedule()
+        {
+            sqlConnection.Open();
+
+            string subjectCode = AdminForm.verifySubjCode();
+
+            string sqlQuery = "DELETE FROM Schedule WHERE SubjectCode = @SubjectCode";
+            SqlCommand command = new SqlCommand(sqlQuery, sqlConnection);
+            command.Parameters.AddWithValue("@SubjectCode", subjectCode);
+            int rowAffected = command.ExecuteNonQuery();
+
+            if (rowAffected > 0)
+            {
+                AdminForm.DeleteSuccess();
+            }
+            else
+            {
+                AdminForm.updatedError();
+
+            }
+        }
+
+
         //method for showing schedule for faculty
         public void viewFacultySchedule(string facultyNumber)
         {
