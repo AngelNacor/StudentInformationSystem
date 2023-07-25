@@ -12,6 +12,7 @@ namespace SIS_UI
             Console.WriteLine("[2]Grading System");
             Console.WriteLine("[3]Attendance");
             Console.WriteLine("[4]Schedule");
+            Console.WriteLine("[[5]Subject");
             Console.Write("Input: ");
             return Convert.ToInt32(Console.ReadLine());
         }

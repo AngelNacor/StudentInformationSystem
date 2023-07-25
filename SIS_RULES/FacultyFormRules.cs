@@ -39,6 +39,11 @@ namespace SIS_RULES
 
                     case 4://Schedule
                         sql.viewFacultySchedule(StudentForm.username);
+                        actionFacultyWelcomePage();
+                        break;
+                    case 5://subject
+                        sql.showFacultySubject(StudentForm.username);
+                        actionFacultyWelcomePage();
                         break;
                 }
             } while (status == null);

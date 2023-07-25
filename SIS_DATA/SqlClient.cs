@@ -293,6 +293,73 @@ namespace SIS_DATA
             sqlConnection.Close();
         }
 
+        //method for showing the subject and student enrolled
+        public void showFacultySubject(string facultyNumber)
+        {
+            string course = "BSIT";
+            //facultyNumber = facultyInfo.facultyNumber;
+
+            string sqlQuery = "SELECT SubjectCode, Description,instructor " +
+                              "FROM Schedule " +
+                              "WHERE instructor IN (SELECT FullName FROM FacultyInfo WHERE FacultyNumber = @FacultyNumber);";
+            SqlCommand command = new SqlCommand(sqlQuery, sqlConnection);
+            sqlConnection.Open();
+            command.Parameters.AddWithValue("@FacultyNumber",facultyNumber);
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                sched.subjectCode = reader.GetString(0);
+                sched.description= reader.GetString(1);
+                sched.instructor = reader.GetString(2);
+
+                ShowInformation.showFacultySubject(sched);
+            }
+            sqlConnection.Close();
+
+            ////sqlConnection.Close();
+
+            string sqlSelect = "SELECT SISAccountNumber,FullName,Course FROM StudentInfo WHERE Course = @Course";
+            SqlCommand commands = new SqlCommand(sqlSelect, sqlConnection);
+            sqlConnection.Open();
+            commands.Parameters.AddWithValue("@Course",course);
+            SqlDataReader readers = commands.ExecuteReader();
+            while (readers.Read())
+            {
+                studentInfo.SISAccountNumber = readers.GetString(0);
+                studentInfo.fullName = readers.GetString(1);
+                studentInfo.course = readers.GetString(2);
+
+                ShowInformation.showStudentEnrolled(studentInfo);
+                //showStudentEnrolled();
+
+            }
+            sqlConnection.Close();
+        }
+
+        //public void showStudentEnrolled()
+        //{
+        //    string course = "BSIT";
+
+        //    string sqlSelect = "SELECT SISAccountNumber,FullName,Course FROM StudentInfo WHERE Course = @Course";
+        //    SqlCommand commands = new SqlCommand(sqlSelect, sqlConnection);
+        //    sqlConnection.Open();
+        //    commands.Parameters.AddWithValue("@Course", course);
+        //    SqlDataReader readers = commands.ExecuteReader();
+        //    while (readers.Read())
+        //    {
+        //        studentInfo.SISAccountNumber = readers.GetString(0);
+        //        studentInfo.fullName = readers.GetString(1);
+        //        studentInfo.course = readers.GetString(2);
+
+        //        ShowInformation.showStudentEnrolled(studentInfo);
+
+        //    }
+        //    sqlConnection.Close();
+        //}
+
+
+
 
         //method for viewing all subject for students
         public void viewSubject(string Course)

@@ -81,5 +81,19 @@ namespace SIS_UI
                 $"Instructor: {sched.instructor}\n");
         }
 
+        public static void showFacultySubject(Schedule sched)
+        {
+            Console.WriteLine($"\nSubject Code: {sched.subjectCode}\n" +
+               $"Description: {sched.description}\n" +
+               $"Instructor: {sched.instructor}\n");
+        }
+
+        public static void showStudentEnrolled(StudentInfo student)
+        {
+            Console.WriteLine($"\nSIS Account Number: {student.SISAccountNumber}\t"+
+                $"Student Name: {student.fullName}\t" +
+                $"Course: {student.course}\t");
+        }
+
     }
 }
