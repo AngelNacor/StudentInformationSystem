@@ -80,6 +80,25 @@ namespace SIS_RULES
                         break;
 
                     case 3:
+                        status = AdminForm.adminSubject();
+                        switch (status)
+                        {
+                            case 0:
+                                break;
+
+                            case 1://view
+                                sql.viewAdminSubject();
+                                break;
+
+                            case 2://add
+                                sql.addSubject();
+                                break;
+
+                            case 3://delete
+                                sql.deleteSubject();
+                                break;
+
+                        }
 
                         actionAdminFacultyWelcomePage();
                         break;

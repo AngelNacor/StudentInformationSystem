@@ -49,6 +49,17 @@ namespace SIS_UI
             return Convert.ToInt32(Console.ReadLine());
         }
 
+        public static int adminSubject()
+        {
+            Console.WriteLine("\nPlease choose an action: ");
+            Console.WriteLine("[0]Cancel");
+            Console.WriteLine("[1]View Subject");
+            Console.WriteLine("[2]Add Subject");
+            Console.WriteLine("[3]Delete Schedule");
+            Console.Write("Input: ");
+            return Convert.ToInt32(Console.ReadLine());
+        }
+
         public static string updateTime()
         {
             //Console.ReadKey();
@@ -129,6 +140,29 @@ namespace SIS_UI
             return Convert.ToInt32(Console.ReadLine());
         }
 
+        public static string prereq()
+        {
+            Console.WriteLine("\nEnter prerequisite: ");
+            return Console.ReadLine();
+        }
+
+        public static string addCourse()
+        {
+            Console.WriteLine("\nEnter course: ");
+            return Console.ReadLine();
+        }
+
+        public static int addYear()
+        {
+            Console.WriteLine("\nEnter year: ");
+            return Convert.ToInt32(Console.ReadLine());
+        }
+
+        public static string addSemester()
+        {
+            Console.WriteLine("\nEnter semester: ");
+            return Console.ReadLine();
+        }
 
         public static void logOut()
         {
@@ -139,7 +173,7 @@ namespace SIS_UI
 
         public static void addSuccess()
         {
-            Console.WriteLine("\nSchedule successfully added");
+            Console.WriteLine("\nsuccessfully added");
         }
 
         public static void updateSuccess()

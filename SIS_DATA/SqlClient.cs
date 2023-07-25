@@ -427,6 +427,90 @@ namespace SIS_DATA
             }
         }
 
+        //method for admin subject
+        public void viewAdminSubject()
+        {
+            sqlConnection.Open();
+
+            string sqlQuery = "SELECT * FROM Subject";
+            SqlCommand command = new SqlCommand(sqlQuery,sqlConnection);
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                subj.subjectCode = reader.GetString(1);
+                subj.prereq = reader.GetString(2);
+                subj.description = reader.GetString(3);
+                subj.unit = reader.GetInt32(4);
+                subj.course = reader.GetString(5);
+                subj.year = reader.GetInt32(6);
+                subj.semester = reader.GetString(7);
+
+                ShowInformation.showSubject(subj);
+
+            }
+            sqlConnection.Close();
+        }
+
+        //method for adding subject by admin
+        public void addSubject()
+        {
+            int no = AdminForm.addNo();
+            string subjcode = AdminForm.addSubjectCode();
+            string prereq = AdminForm.prereq();
+            string desc = AdminForm.addDescription();
+            int unit = AdminForm.addUnit();
+            string course = AdminForm.addCourse();
+            int year = AdminForm.addYear();
+            string semester = AdminForm.addSemester();
+
+            sqlConnection.Open();
+
+            string sqlQuery = "INSERT INTO Subject(No#,SubjectCode,Prerequisite,Description,Unit,Course,Year,Semester)VALUES(@No#,@SubjectCode,@Prerequisite,@Description,@Unit,@Course,@Year,@Semester)";
+            SqlCommand command = new SqlCommand(sqlQuery, sqlConnection);
+
+            command.Parameters.AddWithValue("@No#", no);
+            command.Parameters.AddWithValue("@SubjectCode", subjcode);
+            command.Parameters.AddWithValue("@Prerequisite", prereq);
+            command.Parameters.AddWithValue("@Description", desc);
+            command.Parameters.AddWithValue("@Unit", unit);
+            command.Parameters.AddWithValue("@Course", course);
+            command.Parameters.AddWithValue("@Year", year);
+            command.Parameters.AddWithValue("@Semester", semester);
+
+            int rowAffected = command.ExecuteNonQuery();
+
+            if(rowAffected > 0)
+            {
+                AdminForm.addSuccess();
+            }
+            sqlConnection.Close();
+        }
+
+        //method for deleting subject by admin
+        public void deleteSubject()
+        {
+            string subjectCode = AdminForm.verifySubjCode();
+
+            sqlConnection.Open();
+
+            string sqlQuery = "DELETE Subject where SubjectCode = @SubjectCode";
+            SqlCommand command = new SqlCommand(@sqlQuery, sqlConnection);
+            command.Parameters.AddWithValue("@SubjectCode", subjectCode);
+            int rowAffected = command.ExecuteNonQuery();
+
+            if (rowAffected > 0)
+            {
+                AdminForm.DeleteSuccess();
+            }
+            else
+            {
+                AdminForm.updatedError();
+
+            }
+
+        }
+
 
         //method for showing schedule for faculty
         public void viewFacultySchedule(string facultyNumber)
