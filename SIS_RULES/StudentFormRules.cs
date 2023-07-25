@@ -140,6 +140,8 @@ namespace SIS_RULES
 
                     case 6:
                         //Subject
+                        Subject subj = new Subject();
+                        sql.viewSubject(subj.course);
                         actionStudentWelcomePage();
                         break;
                 }

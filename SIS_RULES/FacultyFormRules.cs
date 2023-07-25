@@ -38,7 +38,7 @@ namespace SIS_RULES
                         break;
 
                     case 4://Schedule
-
+                        sql.viewFacultySchedule(StudentForm.username);
                         break;
                 }
             } while (status == null);

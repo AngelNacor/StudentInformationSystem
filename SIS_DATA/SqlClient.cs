@@ -30,6 +30,7 @@ namespace SIS_DATA
         FacultyInfo facultyInfo = new FacultyInfo();
         AdminInfo adminInfo = new AdminInfo();
         Schedule sched = new Schedule();
+        Subject subj = new Subject();
 
         //method for viewing student personal information
         public void showStudentPersonalInfo(string sisAccountNumber)
@@ -241,8 +242,6 @@ namespace SIS_DATA
             command.Parameters.AddWithValue("@Day", Day);
             SqlDataReader reader = command.ExecuteReader();
 
-
-
             if (reader.HasRows)
             {
                 while (reader.Read())
@@ -268,8 +267,57 @@ namespace SIS_DATA
 
         }
 
-        //method for viewing all subject for students
+        //method for showing schedule for faculty
+        public void viewFacultySchedule(string facultyNumber)
+        {
+            string sqlQuery = "SELECT SubjectCode, Description, Schedule, day, instructor " +
+                              "FROM Schedule " +
+                              "WHERE instructor IN (SELECT FullName FROM FacultyInfo WHERE FacultyNumber = @FacultyNumber);"; // Add a semicolon here
 
+            SqlCommand command = new SqlCommand(sqlQuery, sqlConnection);
+            sqlConnection.Open();
+            command.Parameters.AddWithValue("@FacultyNumber", facultyNumber);
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                sched.subjectCode = reader.GetString(0);
+                sched.description = reader.GetString(1);
+                sched.time = reader.GetString(2);
+                sched.day = reader.GetString(3);
+                sched.instructor = reader.GetString(4);
+
+                ShowInformation.showFacultySched(sched);
+            }
+
+            sqlConnection.Close();
+        }
+
+
+        //method for viewing all subject for students
+        public void viewSubject(string Course)
+        {
+            Course = "BSIT";
+            string sqlQuery = "SELECT * FROM Subject WHERE Course = @Course";
+            SqlCommand command = new SqlCommand (sqlQuery, sqlConnection);
+            sqlConnection.Open ();
+            command.Parameters.AddWithValue("@Course", Course);
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                subj.subjectCode = reader.GetString(1);
+                subj.prereq = reader.GetString(2);
+                subj.description = reader.GetString(3);
+                subj.unit = reader.GetInt32(4);
+                subj.course = reader.GetString(5);
+                subj.year = reader.GetInt32(6);
+                subj.semester = reader.GetString(7);
+
+                ShowInformation.showSubject(subj);
+            }
+            sqlConnection.Close();
+        }
 
         //method for updating personal information
         public void updatePlaceOfBirth(string sisAccountNumber)
