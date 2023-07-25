@@ -70,6 +70,36 @@ namespace AM_Data
                 DateModified = DateTime.Now
             };
 
+            SISAccount student3 = new SISAccount
+            {
+                SISAccountNumber = "2021-00188-BN-0",
+                EmailAddress = "odon@gmail.com",
+                Password = "odon",
+                Type = SISType.Student,
+                DateCreated = DateTime.Now,
+                DateModified = DateTime.Now
+            };
+
+            SISAccount student4 = new SISAccount
+            {
+                SISAccountNumber = "2021-00182-BN-0",
+                EmailAddress = "nacor@gmail.com",
+                Password = "nacor",
+                Type = SISType.Student,
+                DateCreated = DateTime.Now,
+                DateModified = DateTime.Now
+            };
+
+            SISAccount student5 = new SISAccount
+            {
+                SISAccountNumber = "2021-00397-BN-0",
+                EmailAddress = "caravana@gmail.com",
+                Password = "caravana",
+                Type = SISType.Student,
+                DateCreated = DateTime.Now,
+                DateModified = DateTime.Now
+            };
+
             SISAccount faculty1 = new SISAccount
             {
                 SISAccountNumber = "FA0001BN2016",
@@ -145,6 +175,9 @@ namespace AM_Data
             SISAccounts.Add(admin4);
             SISAccounts.Add(student1);
             SISAccounts.Add(student2);
+            SISAccounts.Add(student3);
+            SISAccounts.Add(student4);
+            SISAccounts.Add(student5);
             SISAccounts.Add(faculty1);
             SISAccounts.Add(faculty2);
             SISAccounts.Add(faculty3);

@@ -28,13 +28,13 @@ namespace SIS_DATA
         StudentPersonalInfo student = new StudentPersonalInfo();
         StudentInfo studentInfo = new StudentInfo();
         FacultyInfo facultyInfo = new FacultyInfo();
+        AdminInfo adminInfo = new AdminInfo();
+        Schedule sched = new Schedule();
+        Subject subj = new Subject();
 
         //method for viewing student personal information
         public void showStudentPersonalInfo(string sisAccountNumber)
         {
-            //public string sisAccount = 
-            //StudentPersonalInfo student = new StudentPersonalInfo();
-            //sqlConnection.Open();
             string sqlQuery = "SELECT * FROM StudentPersonalInfo where SISAccountNumber = @SISAccountNumber";
             SqlCommand command = new SqlCommand(sqlQuery, sqlConnection);
             sqlConnection.Open();
@@ -55,31 +55,6 @@ namespace SIS_DATA
 
                 //SIS_UI
                 ShowInformation.ShowStudentPersonalInfo(student);
-                //Console.WriteLine($"\nSIS Account Number: {student.SISAccountNumber}\n" +
-                //    $"Full Name: {student.fullname}\n" +
-                //    $"Gender: {student.Gender}\n" +
-                //    $"Date Of Birth: {student.DateofBirth}\n" +
-                //    $"Place Of Birth: {student.placeofBirth}\n" +
-                //    $"Mobile Number: {student.mobileNo}\n" +
-                //    $"Email Address: {student.emailAddress}\n" +
-                //    $"Residential Address: {student.residentialAddress}\n" +
-                //    $"Permanent Address: {student.permanentAdress}");
-                
-                /*string formattedInfo = $"\nStudent Personal Information\n" +
-                    $"SIS Account Number: {student.SISAccountNumber}\n" +
-                    $"Full Name: {student.fullname}\n" +
-                    $"Gender: {student.Gender}\n" +
-                    $"Date Of Birth: {student.DateofBirth}\n" +
-                    $"Place Of Birth: {student.placeofBirth} \n" +
-                    $"Mobile Number: {student.mobileNo} \n" +
-                    $"Email Address: {student.emailAddress} \n" +
-                    $"Residential Address: {student.residentialAddress} \n" +
-                    $"Permanent Address: {student.permanentAdress} \n" ;
-                Trace.WriteLine(formattedInfo); */
-
-                //return formattedInfo;
-
-                //sqlConnection.Close();
             }
             sqlConnection.Close();
         }
@@ -103,11 +78,6 @@ namespace SIS_DATA
 
                 //SIS_UI
                 ShowInformation.ShowStudentInfo(studentInfo);
-                //Console.WriteLine($"\nSIS Account Number: {studentInfo.SISAccountNumber}\n" +
-                //    $"Full Name: {studentInfo.fullName}\n" +
-                //    $"Course: {studentInfo.course}\n" +
-                //    $"Year: {studentInfo.year}\n" +
-                //    $"Section: {studentInfo.section}\n");
             }
             sqlConnection.Close();
         }
@@ -130,11 +100,533 @@ namespace SIS_DATA
 
                 //SIS_UI
                 ShowInformation.showFacultyInfo(facultyInfo);
-                //Console.WriteLine($"\nFaculty Number: {facultyInfo.facultyNumber}\n" +
-                //    $"Faculty Name: {facultyInfo.facultyName}\n" +
-                //    $"Subject Held: {facultyInfo.subjectHeld}\n" +
-                //    $"Email Address: {facultyInfo.email}\n"); 
+            }
+            sqlConnection.Close();
+        }
 
+        //method to view admin info
+        public void showAdminInfo(string adminNumber)
+        {
+            string sqlQuery = "SELECT * FROM AdminInfo where AdminNumber = @AdminNumber";
+            SqlCommand command = new SqlCommand(sqlQuery, sqlConnection);
+            sqlConnection.Open();
+            command.Parameters.AddWithValue("@AdminNumber", adminNumber);
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                adminInfo.adminNumber = reader.GetString(1);
+                adminInfo.adminName = reader.GetString(2);
+                adminInfo.emailAddress = reader.GetString(3);
+
+                ShowInformation.showAdminInfo(adminInfo);
+            }
+            sqlConnection.Close();
+        }
+
+        //method to call monday schedule
+        public void viewMondaySchedule()
+        {
+            String Day = "Monday";
+            string sqlQuery = "SELECT * FROM Schedule where Day = @Day";
+            SqlCommand command = new SqlCommand(sqlQuery,sqlConnection);
+            sqlConnection.Open();
+            command.Parameters.AddWithValue("@Day", Day);
+            SqlDataReader reader = command.ExecuteReader();
+
+           
+            
+                if (reader.HasRows)
+                {
+                while (reader.Read())
+                {
+                    sched.subjectCode = reader.GetString(1);
+                    sched.description = reader.GetString(2);
+                    sched.lecture = reader.GetInt32(3);
+                    sched.laboratory = reader.GetInt32(4);
+                    sched.unit = reader.GetInt32(5);
+                    sched.time = reader.GetString(6);
+                    sched.day = reader.GetString(7);
+                    sched.instructor = reader.GetString(8);
+
+                    ShowInformation.showSchedule(sched);
+                }
+                }
+                else
+                {
+                    StudentForm.scheduleMonday();
+                }
+            
+            sqlConnection.Close();
+
+        }
+
+        public void viewTuesdaySchedule()
+        {
+            String Day = "Tuesday";
+            string sqlQuery = "SELECT * FROM Schedule where Day = @Day";
+            SqlCommand command = new SqlCommand(sqlQuery, sqlConnection);
+            sqlConnection.Open();
+            command.Parameters.AddWithValue("@Day", Day);
+            SqlDataReader reader = command.ExecuteReader();
+
+
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    sched.subjectCode = reader.GetString(1);
+                    sched.description = reader.GetString(2);
+                    sched.lecture = reader.GetInt32(3);
+                    sched.laboratory = reader.GetInt32(4);
+                    sched.unit = reader.GetInt32(5);
+                    sched.time = reader.GetString(6);
+                    sched.day = reader.GetString(7);
+                    sched.instructor = reader.GetString(8);
+
+                    ShowInformation.showSchedule(sched);
+                }
+            }
+            else
+            {
+                StudentForm.scheduleMonday();
+            }
+
+            sqlConnection.Close();
+
+        }
+
+        public void viewThursdaySchedule()
+        {
+            String Day = "Thursday";
+            string sqlQuery = "SELECT * FROM Schedule where Day = @Day";
+            SqlCommand command = new SqlCommand(sqlQuery, sqlConnection);
+            sqlConnection.Open();
+            command.Parameters.AddWithValue("@Day", Day);
+            SqlDataReader reader = command.ExecuteReader();
+
+
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    sched.subjectCode = reader.GetString(1);
+                    sched.description = reader.GetString(2);
+                    sched.lecture = reader.GetInt32(3);
+                    sched.laboratory = reader.GetInt32(4);
+                    sched.unit = reader.GetInt32(5);
+                    sched.time = reader.GetString(6);
+                    sched.day = reader.GetString(7);
+                    sched.instructor = reader.GetString(8);
+
+                    ShowInformation.showSchedule(sched);
+                }
+            }
+            else
+            {
+                StudentForm.scheduleMonday();
+            }
+
+            sqlConnection.Close();
+
+        }
+
+        public void viewSaturdaySchedule()
+        {
+            String Day = "Saturday";
+            string sqlQuery = "SELECT * FROM Schedule where Day = @Day";
+            SqlCommand command = new SqlCommand(sqlQuery, sqlConnection);
+            sqlConnection.Open();
+            command.Parameters.AddWithValue("@Day", Day);
+            SqlDataReader reader = command.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    sched.subjectCode = reader.GetString(1);
+                    sched.description = reader.GetString(2);
+                    sched.lecture = reader.GetInt32(3);
+                    sched.laboratory = reader.GetInt32(4);
+                    sched.unit = reader.GetInt32(5);
+                    sched.time = reader.GetString(6);
+                    sched.day = reader.GetString(7);
+                    sched.instructor = reader.GetString(8);
+
+                    ShowInformation.showSchedule(sched);
+                }
+            }
+            else
+            {
+                StudentForm.scheduleMonday();
+            }
+
+            sqlConnection.Close();
+
+        }
+
+        //method for viewing all schedule for admin
+        public void viewAdminSchedule()
+        {
+            string sqlQuery = "SELECT * FROM Schedule";
+            SqlCommand command = new SqlCommand(sqlQuery, sqlConnection);
+            sqlConnection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                sched.subjectCode = reader.GetString(1);
+                sched.description = reader.GetString(2);
+                sched.lecture = reader.GetInt32(3);
+                sched.laboratory = reader.GetInt32(4);
+                sched.unit = reader.GetInt32(5);
+                sched.time = reader.GetString(6);
+                sched.day = reader.GetString(7);
+                sched.instructor = reader.GetString(8);
+
+                ShowInformation.showSchedule(sched);
+            }
+            sqlConnection.Close();
+        }
+
+        //add schedule
+        public void addSchedule()
+        {
+            int no = AdminForm.addNo();
+            string subjcode = AdminForm.addSubjectCode();
+            string desc = AdminForm.addDescription();
+            int lec = AdminForm.addLecture();
+            int lab = AdminForm.addLaboratory();
+            int unit = AdminForm.addUnit();
+            string time = AdminForm.addSchedule();
+            string day = AdminForm.addDay();
+            string instructor = AdminForm.addInstructor();
+
+            string sqlQuery = "INSERT INTO Schedule(No#,SubjectCode,Description,Lec,Lab,Unit,Schedule,day,instructor)VALUES(@No#,@SubjectCode,@Description,@Lec,@Lab,@Unit,@Schedule,@day,@instructor)";
+            SqlCommand command = new SqlCommand(sqlQuery, sqlConnection);
+            sqlConnection.Open();
+
+            command.Parameters.AddWithValue("@No#", no);
+            command.Parameters.AddWithValue("@SubjectCode", subjcode);
+            command.Parameters.AddWithValue("@Description", desc);
+            command.Parameters.AddWithValue("@Lec", lec);
+            command.Parameters.AddWithValue("@Lab", lab);
+            command.Parameters.AddWithValue("@Unit", unit);
+            command.Parameters.AddWithValue("@Schedule", time);
+            command.Parameters.AddWithValue("@day", day);
+            command.Parameters.AddWithValue("@instructor", instructor);
+            int rowsAffected = command.ExecuteNonQuery();
+            
+            if(rowsAffected > 0)
+            {
+                AdminForm.addSuccess();
+            }
+            sqlConnection.Close();
+        }
+
+        //update schedule
+        public void updateTime()
+        {
+            sqlConnection.Open();
+
+            string subjectCode = AdminForm.verifySubjCode();
+            string time = AdminForm.updateTime();
+
+            string sqlQuery = "UPDATE Schedule set Schedule = @Schedule WHERE SubjectCode = @SubjectCode";
+            SqlCommand command = new SqlCommand(@sqlQuery, sqlConnection);
+           
+            command.Parameters.AddWithValue("@Schedule", time);
+            command.Parameters.AddWithValue("@SubjectCode", subjectCode);
+            int rowAffected = command.ExecuteNonQuery();
+
+            if (rowAffected > 0)
+            {
+                AdminForm.updateSuccess();
+            }
+            else
+            {
+                AdminForm.updatedError();
+            }
+
+            sqlConnection.Close();
+        }
+
+        public void updateDay()
+        {
+            sqlConnection.Open();
+
+            string subjectCode = AdminForm.verifySubjCode();
+            string day = AdminForm.updateDay();
+
+            string sqlQuery = "UPDATE Schedule set day = @day WHERE SubjectCode = @SubjectCode";
+            SqlCommand command = new SqlCommand(@sqlQuery, sqlConnection);
+
+            command.Parameters.AddWithValue("@day", day);
+            command.Parameters.AddWithValue("@SubjectCode", subjectCode);
+            int rowAffected = command.ExecuteNonQuery();
+
+            if (rowAffected > 0)
+            {
+                AdminForm.updateSuccess();
+            }
+            else
+            {
+                AdminForm.updatedError();
+            }
+
+            sqlConnection.Close();
+        }
+
+        public void updateInstructor()
+        {
+            sqlConnection.Open();
+
+            string subjectCode = AdminForm.verifySubjCode();
+            string prof = AdminForm.updateInstructor();
+
+            string sqlQuery = "UPDATE Schedule set instructor = @instructor WHERE SubjectCode = @SubjectCode";
+            SqlCommand command = new SqlCommand(@sqlQuery, sqlConnection);
+
+            command.Parameters.AddWithValue("@instructor", prof);
+            command.Parameters.AddWithValue("@SubjectCode", subjectCode);
+            int rowAffected = command.ExecuteNonQuery();
+
+            if (rowAffected > 0)
+            {
+                AdminForm.updateSuccess();
+            }
+            else
+            {
+                AdminForm.updatedError();
+            }
+
+            sqlConnection.Close();
+        }
+
+        public void deleteSchedule()
+        {
+            sqlConnection.Open();
+
+            string subjectCode = AdminForm.verifySubjCode();
+
+            string sqlQuery = "DELETE FROM Schedule WHERE SubjectCode = @SubjectCode";
+            SqlCommand command = new SqlCommand(sqlQuery, sqlConnection);
+            command.Parameters.AddWithValue("@SubjectCode", subjectCode);
+            int rowAffected = command.ExecuteNonQuery();
+
+            if (rowAffected > 0)
+            {
+                AdminForm.DeleteSuccess();
+            }
+            else
+            {
+                AdminForm.updatedError();
+
+            }
+        }
+
+        //method for admin subject
+        public void viewAdminSubject()
+        {
+            sqlConnection.Open();
+
+            string sqlQuery = "SELECT * FROM Subject";
+            SqlCommand command = new SqlCommand(sqlQuery,sqlConnection);
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                subj.subjectCode = reader.GetString(1);
+                subj.prereq = reader.GetString(2);
+                subj.description = reader.GetString(3);
+                subj.unit = reader.GetInt32(4);
+                subj.course = reader.GetString(5);
+                subj.year = reader.GetInt32(6);
+                subj.semester = reader.GetString(7);
+
+                ShowInformation.showSubject(subj);
+
+            }
+            sqlConnection.Close();
+        }
+
+        //method for adding subject by admin
+        public void addSubject()
+        {
+            int no = AdminForm.addNo();
+            string subjcode = AdminForm.addSubjectCode();
+            string prereq = AdminForm.prereq();
+            string desc = AdminForm.addDescription();
+            int unit = AdminForm.addUnit();
+            string course = AdminForm.addCourse();
+            int year = AdminForm.addYear();
+            string semester = AdminForm.addSemester();
+
+            sqlConnection.Open();
+
+            string sqlQuery = "INSERT INTO Subject(No#,SubjectCode,Prerequisite,Description,Unit,Course,Year,Semester)VALUES(@No#,@SubjectCode,@Prerequisite,@Description,@Unit,@Course,@Year,@Semester)";
+            SqlCommand command = new SqlCommand(sqlQuery, sqlConnection);
+
+            command.Parameters.AddWithValue("@No#", no);
+            command.Parameters.AddWithValue("@SubjectCode", subjcode);
+            command.Parameters.AddWithValue("@Prerequisite", prereq);
+            command.Parameters.AddWithValue("@Description", desc);
+            command.Parameters.AddWithValue("@Unit", unit);
+            command.Parameters.AddWithValue("@Course", course);
+            command.Parameters.AddWithValue("@Year", year);
+            command.Parameters.AddWithValue("@Semester", semester);
+
+            int rowAffected = command.ExecuteNonQuery();
+
+            if(rowAffected > 0)
+            {
+                AdminForm.addSuccess();
+            }
+            sqlConnection.Close();
+        }
+
+        //method for deleting subject by admin
+        public void deleteSubject()
+        {
+            string subjectCode = AdminForm.verifySubjCode();
+
+            sqlConnection.Open();
+
+            string sqlQuery = "DELETE Subject where SubjectCode = @SubjectCode";
+            SqlCommand command = new SqlCommand(@sqlQuery, sqlConnection);
+            command.Parameters.AddWithValue("@SubjectCode", subjectCode);
+            int rowAffected = command.ExecuteNonQuery();
+
+            if (rowAffected > 0)
+            {
+                AdminForm.DeleteSuccess();
+            }
+            else
+            {
+                AdminForm.updatedError();
+
+            }
+
+        }
+
+
+        //method for showing schedule for faculty
+        public void viewFacultySchedule(string facultyNumber)
+        {
+            string sqlQuery = "SELECT SubjectCode, Description, Schedule, day, instructor " +
+                              "FROM Schedule " +
+                              "WHERE instructor IN (SELECT FullName FROM FacultyInfo WHERE FacultyNumber = @FacultyNumber);"; // Add a semicolon here
+
+            SqlCommand command = new SqlCommand(sqlQuery, sqlConnection);
+            sqlConnection.Open();
+            command.Parameters.AddWithValue("@FacultyNumber", facultyNumber);
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                sched.subjectCode = reader.GetString(0);
+                sched.description = reader.GetString(1);
+                sched.time = reader.GetString(2);
+                sched.day = reader.GetString(3);
+                sched.instructor = reader.GetString(4);
+
+                ShowInformation.showFacultySched(sched);
+            }
+
+            sqlConnection.Close();
+        }
+
+        //method for showing the subject and student enrolled
+        public void showFacultySubject(string facultyNumber)
+        {
+            string course = "BSIT";
+            //facultyNumber = facultyInfo.facultyNumber;
+
+            string sqlQuery = "SELECT SubjectCode, Description,instructor " +
+                              "FROM Schedule " +
+                              "WHERE instructor IN (SELECT FullName FROM FacultyInfo WHERE FacultyNumber = @FacultyNumber);";
+            SqlCommand command = new SqlCommand(sqlQuery, sqlConnection);
+            sqlConnection.Open();
+            command.Parameters.AddWithValue("@FacultyNumber",facultyNumber);
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                sched.subjectCode = reader.GetString(0);
+                sched.description= reader.GetString(1);
+                sched.instructor = reader.GetString(2);
+
+                ShowInformation.showFacultySubject(sched);
+            }
+            sqlConnection.Close();
+
+            ////sqlConnection.Close();
+
+            string sqlSelect = "SELECT SISAccountNumber,FullName,Course FROM StudentInfo WHERE Course = @Course";
+            SqlCommand commands = new SqlCommand(sqlSelect, sqlConnection);
+            sqlConnection.Open();
+            commands.Parameters.AddWithValue("@Course",course);
+            SqlDataReader readers = commands.ExecuteReader();
+            while (readers.Read())
+            {
+                studentInfo.SISAccountNumber = readers.GetString(0);
+                studentInfo.fullName = readers.GetString(1);
+                studentInfo.course = readers.GetString(2);
+
+                ShowInformation.showStudentEnrolled(studentInfo);
+                //showStudentEnrolled();
+
+            }
+            sqlConnection.Close();
+        }
+
+        //public void showStudentEnrolled()
+        //{
+        //    string course = "BSIT";
+
+        //    string sqlSelect = "SELECT SISAccountNumber,FullName,Course FROM StudentInfo WHERE Course = @Course";
+        //    SqlCommand commands = new SqlCommand(sqlSelect, sqlConnection);
+        //    sqlConnection.Open();
+        //    commands.Parameters.AddWithValue("@Course", course);
+        //    SqlDataReader readers = commands.ExecuteReader();
+        //    while (readers.Read())
+        //    {
+        //        studentInfo.SISAccountNumber = readers.GetString(0);
+        //        studentInfo.fullName = readers.GetString(1);
+        //        studentInfo.course = readers.GetString(2);
+
+        //        ShowInformation.showStudentEnrolled(studentInfo);
+
+        //    }
+        //    sqlConnection.Close();
+        //}
+
+
+
+
+        //method for viewing all subject for students
+        public void viewSubject(string Course)
+        {
+            Course = "BSIT";
+            string sqlQuery = "SELECT * FROM Subject WHERE Course = @Course";
+            SqlCommand command = new SqlCommand (sqlQuery, sqlConnection);
+            sqlConnection.Open ();
+            command.Parameters.AddWithValue("@Course", Course);
+            SqlDataReader reader = command.ExecuteReader();
+
+            while (reader.Read())
+            {
+                subj.subjectCode = reader.GetString(1);
+                subj.prereq = reader.GetString(2);
+                subj.description = reader.GetString(3);
+                subj.unit = reader.GetInt32(4);
+                subj.course = reader.GetString(5);
+                subj.year = reader.GetInt32(6);
+                subj.semester = reader.GetString(7);
+
+                ShowInformation.showSubject(subj);
             }
             sqlConnection.Close();
         }
@@ -148,7 +640,6 @@ namespace SIS_DATA
 
             string sqlQuery = "UPDATE StudentPersonalInfo Set PlaceOfBirth = @PlaceOfBirth where SISAccountNumber = @SISAccountNumber";
             SqlCommand command = new SqlCommand(sqlQuery, sqlConnection);
-            //sqlConnection.Open();
             command.Parameters.AddWithValue("@PlaceOfBirth", placeOfBirth);
             command.Parameters.AddWithValue("@SISAccountNumber", sisAccountNumber);
             command.ExecuteNonQuery();
@@ -169,12 +660,10 @@ namespace SIS_DATA
 
             string sqlQuery = "UPDATE StudentPersonalInfo Set MobileNo = @MobileNo where SISAccountNumber = @SISAccountNumber";
             SqlCommand command = new SqlCommand(sqlQuery, sqlConnection);
-            //sqlConnection.Open();
             command.Parameters.AddWithValue("@MobileNo", mobileNumber);
             command.Parameters.AddWithValue("@SISAccountNumber", sisAccountNumber);
             command.ExecuteNonQuery();
 
-            //Console.WriteLine("\nPersonal information updated successfully!");
             String message = "Mobile Number updated successfully";
             Debug.Print(message);
 
@@ -190,12 +679,10 @@ namespace SIS_DATA
 
             string sqlQuery = "UPDATE StudentPersonalInfo Set EmailAddress = @EmailAddress where SISAccountNumber = @SISAccountNumber";
             SqlCommand command = new SqlCommand(sqlQuery, sqlConnection);
-            //sqlConnection.Open();
             command.Parameters.AddWithValue("@EmailAddress", emailAddress);
             command.Parameters.AddWithValue("@SISAccountNumber", sisAccountNumber);
             command.ExecuteNonQuery();
 
-            //Console.WriteLine("\nPersonal information updated successfully!");
             String message = "Email Address updated successfully";
             Debug.Print(message);
 
@@ -211,12 +698,10 @@ namespace SIS_DATA
 
             string sqlQuery = "UPDATE StudentPersonalInfo Set ResidentialAddress = @ResidentialAddress where SISAccountNumber = @SISAccountNumber";
             SqlCommand command = new SqlCommand(sqlQuery, sqlConnection);
-            //sqlConnection.Open();
             command.Parameters.AddWithValue("@ResidentialAddress", resAddress);
             command.Parameters.AddWithValue("@SISAccountNumber", sisAccountNumber);
             command.ExecuteNonQuery();
 
-            //Console.WriteLine("\nPersonal information updated successfully!");
             String message = "Residential Address updated successfully";
             Debug.Print(message);
 
@@ -232,12 +717,10 @@ namespace SIS_DATA
 
             string sqlQuery = "UPDATE StudentPersonalInfo Set PermanentAddress = @PermanentAddress where SISAccountNumber = @SISAccountNumber";
             SqlCommand command = new SqlCommand(sqlQuery, sqlConnection);
-            //sqlConnection.Open();
             command.Parameters.AddWithValue("@PermanentAddress", permAddress);
             command.Parameters.AddWithValue("@SISAccountNumber", sisAccountNumber);
             command.ExecuteNonQuery();
 
-            //Console.WriteLine("\nPersonal information updated successfully!");
             String message = "Permanent Address updated successfully";
             Debug.Print(message);
 

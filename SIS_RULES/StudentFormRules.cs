@@ -107,19 +107,42 @@ namespace SIS_RULES
                         action = StudentForm.scheduleSystem();
                         switch (action)
                         {
-                            case 0: actionStudentWelcomePage(); break;
-                            case 1: StudentForm.scheduleMonday(); break;
-                            case 2: StudentForm.scheduleTuesday(); break;
-                            case 3: StudentForm.scheduleWednesday(); break;
-                            case 4: StudentForm.scheduleThursday(); break;
-                            case 5: StudentForm.scheduleFriday(); break;
-                            case 6: StudentForm.scheduleSaturday(); break;
+                            case 0:
+                                actionStudentWelcomePage(); 
+                                break;
+                            case 1:
+                                sql.viewMondaySchedule();
+                                //StudentForm.scheduleMonday();
+                                break;
+                            case 2:
+                                sql.viewTuesdaySchedule();
+                                //StudentForm.scheduleTuesday();
+                                break;
+                            case 3:
+                                sql.viewMondaySchedule();
+                                //StudentForm.scheduleWednesday();
+                                break;
+                            case 4:
+                                sql.viewThursdaySchedule();
+                                //StudentForm.scheduleThursday();
+                                break;
+                            case 5:
+                                sql.viewMondaySchedule();
+                                //StudentForm.scheduleFriday();
+                                break;
+                            case 6:
+                                sql.viewSaturdaySchedule();
+                               //StudentForm.scheduleSaturday();
+                                break;
                         }
                         actionStudentWelcomePage();
                         break;
 
                     case 6:
                         //Subject
+                        Subject subj = new Subject();
+                        sql.viewSubject(subj.course);
+                        actionStudentWelcomePage();
                         break;
                 }
             } while (status == null);

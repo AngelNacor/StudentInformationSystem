@@ -41,5 +41,59 @@ namespace SIS_UI
                     $"Subject Held: {facultyInfo.subjectHeld}\n" +
                     $"Email Address: {facultyInfo.email}\n");
         }
+
+        public static void showAdminInfo(AdminInfo adminInfo)
+        {
+            Console.WriteLine($"\nAdmin Number: {adminInfo.adminNumber}\n" +
+                    $"Admin Name: {adminInfo.adminName}\n" +
+                    $"Email Address: {adminInfo.emailAddress}\n");
+        }
+
+        public static void showSchedule(Schedule sched)
+        {
+            Console.WriteLine($"\nSubject Code: {sched.subjectCode}\n"+
+                $"Description: {sched.description}\n" +
+                $"Lecture : {sched.lecture}\n"+
+                $"Laboratory: {sched.laboratory}\n"+
+                $"Unit: {sched.unit}\n"+
+                $"Time: {sched.time}\n"+
+                $"Day: {sched.day}\n"+
+                $"Instructor: {sched.instructor}\n");
+        }
+
+        public static void showSubject(Subject subj)
+        {
+            Console.WriteLine($"\nSubject Code: {subj.subjectCode}\n"+
+                $"Prerequisite: {subj.prereq}\n"+
+                $"Description: {subj.description}\n+" +
+                $"Unit: {subj.unit}\n" +
+                $"Course: {subj.course}\n" +
+                $"Year: {subj.year}\n" +
+                $"Semester: {subj.semester}\n");
+        }
+
+        public static void showFacultySched(Schedule sched)
+        {
+            Console.WriteLine($"\nSubject Code: {sched.subjectCode}\n"+
+                $"Description: {sched.description}\n" +
+                $"Time: {sched.time}\n" +
+                $"Day: {sched.day}\n" +
+                $"Instructor: {sched.instructor}\n");
+        }
+
+        public static void showFacultySubject(Schedule sched)
+        {
+            Console.WriteLine($"\nSubject Code: {sched.subjectCode}\n" +
+               $"Description: {sched.description}\n" +
+               $"Instructor: {sched.instructor}\n");
+        }
+
+        public static void showStudentEnrolled(StudentInfo student)
+        {
+            Console.WriteLine($"\nSIS Account Number: {student.SISAccountNumber}\t"+
+                $"Student Name: {student.fullName}\t" +
+                $"Course: {student.course}\t");
+        }
+
     }
 }

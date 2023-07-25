@@ -106,7 +106,7 @@ namespace SIS_UI
 
         public static void attendance()
         {
-            Console.WriteLine("On progress of Nico's Group");
+            Console.WriteLine("\nOn progress of Nico's Group");
         }
 
         public static void gradingSystem()
@@ -129,7 +129,7 @@ namespace SIS_UI
 
         public static void scheduleMonday()
         {
-            Console.WriteLine("No schedule");
+            Console.WriteLine("\nNo schedule");
         }
 
         public static void scheduleTuesday()
