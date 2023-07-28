@@ -65,7 +65,7 @@ namespace SIS_UI
         {
             Console.WriteLine($"\nSubject Code: {subj.subjectCode}\n"+
                 $"Prerequisite: {subj.prereq}\n"+
-                $"Description: {subj.description}\n+" +
+                $"Description: {subj.description}\n" +
                 $"Unit: {subj.unit}\n" +
                 $"Course: {subj.course}\n" +
                 $"Year: {subj.year}\n" +

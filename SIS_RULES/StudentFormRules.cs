@@ -35,7 +35,9 @@ namespace SIS_RULES
                         status = StudentForm.actionStudentPersonalInfo();
                         switch (status)
                         {
-                            case 0: break;
+                            case 0:
+                                StudentForm.cancel();
+                                actionStudentWelcomePage(); break;
                             case 1:
                                 //PrintInfos.PrintStudentPersonalInfo(StudentForm.username);
                                 //SqlClient.showStudentPersonalInfo();
@@ -50,7 +52,9 @@ namespace SIS_RULES
                                 switch (action)
                                 {
                                     //cancel
-                                    case 0: break;
+                                    case 0:
+                                        StudentForm.cancel();
+                                        actionStudentWelcomePage(); break;
                                     //SIS Account
                                     case 1: StudentForm.nonEditable(); break;
                                     //Name
@@ -142,6 +146,11 @@ namespace SIS_RULES
                         //Subject
                         Subject subj = new Subject();
                         sql.viewSubject(subj.course);
+                        actionStudentWelcomePage();
+                        break;
+
+                    default:
+                        StudentForm.invalidInput();
                         actionStudentWelcomePage();
                         break;
                 }

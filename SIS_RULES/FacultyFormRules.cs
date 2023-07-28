@@ -45,6 +45,10 @@ namespace SIS_RULES
                         sql.showFacultySubject(StudentForm.username);
                         actionFacultyWelcomePage();
                         break;
+                    default:
+                        StudentForm.invalidInput();
+                        actionFacultyWelcomePage();
+                        break;
                 }
             } while (status == null);
         }

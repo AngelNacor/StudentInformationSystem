@@ -22,25 +22,28 @@ namespace AM_UI
             SISAccount account;
             SISType accountType;
             //options
-            int status;
+            int status,attempt=0,finalAttempt = 3;
             string ifSuccess;
-
 
             do
             {
                 status = ShowOptions();
                 switch (status)
                 {
-                    case 0: break;
+                    case 0:
+                        Console.WriteLine("\nExit Successfully");
+                        Environment.Exit(0);
+                        break;
                     case 1:
                     case 2:
                         int action = ShowForm();
                         switch (action)
                         {
                             case 1: //login
-                                //ifSuccess = Login(status);
-                                //Console.WriteLine(ifSuccess);
-                                Login(status);
+                                    //ifSuccess = Login(status);
+                                    //Console.WriteLine(ifSuccess);
+                                ifSuccess = Login(status);
+                                Console.WriteLine(ifSuccess);
                                 break;
                             case 2: //Sign in
                                 Register(status);
@@ -60,6 +63,7 @@ namespace AM_UI
                         break;
                     default:
                         Console.WriteLine("Incorrect input.");
+                        
                         break;
                 }
             } while (status == 0);
@@ -77,8 +81,19 @@ namespace AM_UI
                 Console.WriteLine("[3]ADMIN");
                 Console.WriteLine("[0]EXIT");
                 Console.Write("Input: ");
-                return Convert.ToInt32(Console.ReadLine());
+                string input = Console.ReadLine();
+                int option;
+
+                while (!int.TryParse(input, out option) || option < 0 || option > 3)
+                {
+                    Console.WriteLine("\nInvalid input. Please enter a valid option.");
+                    Console.Write("Input: ");
+                    input = Console.ReadLine();
+                }
+
+                return option;
             }
+
             int ShowForm()
             {
                 Console.WriteLine("\nPlease choose an action: ");
@@ -86,43 +101,76 @@ namespace AM_UI
                 Console.WriteLine("[2]Sign Up");
                 Console.WriteLine("[3]Forgot Password");
                 Console.Write("Input: ");
-                return Convert.ToInt32(Console.ReadLine());
+                //return Convert.ToInt32(Console.ReadLine());
+
+                string input = Console.ReadLine();
+                int option;
+
+                while (!int.TryParse(input, out option) || option < 1 || option > 3)
+                {
+                    Console.WriteLine("\nInvalid input. Please enter a valid option.");
+                    Console.Write("Input: ");
+                    input = Console.ReadLine();
+                }
+
+                return option;
             }
 
             //Login
             string Login(int type)
             {
                 if (type == 1)
-                { accountType = SISType.Student; }
+                {
+                    accountType = SISType.Student;
+                }
                 else if (type == 2)
-                { accountType = SISType.Faculty; }
-                else
-                { accountType = SISType.Admin; }
-
-                Console.WriteLine("\nEnter the following information: ");
-                Console.Write("Account number: ");
-                StudentForm.username = Console.ReadLine();
-                Console.Write("Password: ");
-                string password = Console.ReadLine();
-                account = login.Login(StudentForm.username, password, accountType);
-
-                if (account != null && type == 1)
                 {
-                    StudentFormRules.actionStudentWelcomePage();
-                    return "";
-                }
-                else if (account != null && type == 2)
-                {
-                    FacultyFormRules.actionFacultyWelcomePage();
-                    return "";
-                }else if(account != null && type == 3)
-                {
-                    AdminFormRules.actionAdminFacultyWelcomePage();
-                    return "";
+                    accountType = SISType.Faculty;
                 }
                 else
-                { return "Incorrect Credentials."; }
+                {
+                    accountType = SISType.Admin;
+                }
+
+                do
+                {
+                    Console.WriteLine("\nEnter the following information: ");
+                    Console.Write("Account number: ");
+                    StudentForm.username = Console.ReadLine();
+                    Console.Write("Password: ");
+                    string password = Console.ReadLine();
+                    account = login.Login(StudentForm.username, password, accountType);
+
+                    if (account != null && type == 1)
+                    {
+                        StudentFormRules.actionStudentWelcomePage();
+                        return "";
+                    }
+                    else if (account != null && type == 2)
+                    {
+                        FacultyFormRules.actionFacultyWelcomePage();
+                        return "";
+                    }
+                    else if (account != null && type == 3)
+                    {
+                        AdminFormRules.actionAdminFacultyWelcomePage();
+                        return "";
+                    }
+                    else
+                    {
+                        attempt++;
+                        Console.WriteLine($"\nIncorrect Credentials. Remaining attempts: {finalAttempt - attempt}");
+                        if (attempt < finalAttempt)
+                        {
+                            Console.WriteLine("Please try again.");
+                        }
+                    }
+                } while (attempt < finalAttempt);
+
+                Console.WriteLine("You reach your limit, please try again later");
+                return "";
             }
+
             void Register(int type)
             {
                 string username, password, email;
