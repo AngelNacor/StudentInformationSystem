@@ -19,9 +19,20 @@ namespace SIS_UI
             //Console.WriteLine("[2]Personal Information");
             Console.WriteLine("[2]Schedule");
             Console.WriteLine("[3]Subject");
-            Console.WriteLine("[4]TBA");
+            //Console.WriteLine("[4]TBA");
             Console.Write("Input: ");
-            return Convert.ToInt32(Console.ReadLine());
+            //return Convert.ToInt32(Console.ReadLine());
+            string input = Console.ReadLine();
+            int option;
+
+            while (!int.TryParse(input, out option))
+            {
+                Console.WriteLine("\nInvalid input. Please enter a valid option.");
+                Console.Write("Input: ");
+                input = Console.ReadLine();
+            }
+
+            return option;
         }
 
         public static int adminSchedule()
@@ -101,19 +112,52 @@ namespace SIS_UI
         public static int addLecture()
         {
             Console.WriteLine("\nEnter lecture: ");
-            return Convert.ToInt32(Console.ReadLine());
+            //return Convert.ToInt32(Console.ReadLine());
+            string input = Console.ReadLine();
+            int option;
+
+            while (!int.TryParse(input, out option))
+            {
+                Console.WriteLine("\nInvalid input. Please enter a valid option.");
+                Console.Write("Input: ");
+                input = Console.ReadLine();
+            }
+
+            return option;
         }
 
         public static int addLaboratory()
         {
             Console.WriteLine("\nEnter laboratory: ");
-            return Convert.ToInt32(Console.ReadLine());
+            //return Convert.ToInt32(Console.ReadLine());
+            string input = Console.ReadLine();
+            int option;
+
+            while (!int.TryParse(input, out option))
+            {
+                Console.WriteLine("\nInvalid input. Please enter a valid option.");
+                Console.Write("Input: ");
+                input = Console.ReadLine();
+            }
+
+            return option;
         }
 
         public static int addUnit()
         {
             Console.WriteLine("\nEnter unit: ");
-           return Convert.ToInt32(Console.ReadLine());
+            //return Convert.ToInt32(Console.ReadLine());
+            string input = Console.ReadLine();
+            int option;
+
+            while (!int.TryParse(input, out option))
+            {
+                Console.WriteLine("\nInvalid input. Please enter a valid option.");
+                Console.Write("Input: ");
+                input = Console.ReadLine();
+            }
+
+            return option;
         }
 
         public static string addSchedule()
@@ -137,7 +181,18 @@ namespace SIS_UI
         public static int addNo()
         {
             Console.WriteLine("\nEnter number: ");
-            return Convert.ToInt32(Console.ReadLine());
+            //return Convert.ToInt32(Console.ReadLine());
+            string input = Console.ReadLine();
+            int option;
+
+            while (!int.TryParse(input, out option))
+            {
+                Console.WriteLine("\nInvalid input. Please enter a valid option.");
+                Console.Write("Input: ");
+                input = Console.ReadLine();
+            }
+
+            return option;
         }
 
         public static string prereq()
@@ -155,7 +210,18 @@ namespace SIS_UI
         public static int addYear()
         {
             Console.WriteLine("\nEnter year: ");
-            return Convert.ToInt32(Console.ReadLine());
+            //return Convert.ToInt32(Console.ReadLine());
+            string input = Console.ReadLine();
+            int option;
+
+            while (!int.TryParse(input, out option))
+            {
+                Console.WriteLine("\nInvalid input. Please enter a valid option.");
+                Console.Write("Input: ");
+                input = Console.ReadLine();
+            }
+
+            return option;
         }
 
         public static string addSemester()

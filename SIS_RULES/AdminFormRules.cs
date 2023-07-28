@@ -38,6 +38,7 @@ namespace SIS_RULES
                         switch (status)
                         {
                             case 0://cancel
+                                StudentForm.cancel();
                                 actionAdminFacultyWelcomePage();
                                 break;
 
@@ -53,7 +54,10 @@ namespace SIS_RULES
                                 status = AdminForm.updateSchedule();
                                 switch (status)
                                 {
-                                    case 0://cancel
+                                    case 0:
+                                        StudentForm.cancel();
+                                        actionAdminFacultyWelcomePage();
+                                        //cancel
 
                                         break;
 
@@ -84,6 +88,8 @@ namespace SIS_RULES
                         switch (status)
                         {
                             case 0:
+                                StudentForm.cancel();
+                                actionAdminFacultyWelcomePage();
                                 break;
 
                             case 1://view
@@ -103,8 +109,8 @@ namespace SIS_RULES
                         actionAdminFacultyWelcomePage();
                         break;
 
-                    case 4:
-
+                    default:
+                        StudentForm.invalidInput();
                         actionAdminFacultyWelcomePage();
                         break;
                 }

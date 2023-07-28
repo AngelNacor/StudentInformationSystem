@@ -12,9 +12,20 @@ namespace SIS_UI
             Console.WriteLine("[2]Grading System");
             Console.WriteLine("[3]Attendance");
             Console.WriteLine("[4]Schedule");
-            Console.WriteLine("[[5]Subject");
+            Console.WriteLine("[5]Subject");
             Console.Write("Input: ");
-            return Convert.ToInt32(Console.ReadLine());
+            //return Convert.ToInt32(Console.ReadLine());
+            string input = Console.ReadLine();
+            int option;
+
+            while (!int.TryParse(input, out option))
+            {
+                Console.WriteLine("\nInvalid input. Please enter a valid option.");
+                Console.Write("Input: ");
+                input = Console.ReadLine();
+            }
+
+            return option;
         }
 
         //Method for log out

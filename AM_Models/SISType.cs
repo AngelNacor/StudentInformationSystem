@@ -4,6 +4,7 @@
     {
         Student,
         Faculty,
-        Admin
+        Admin,
+        
     }
 }

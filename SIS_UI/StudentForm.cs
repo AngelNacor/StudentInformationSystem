@@ -18,7 +18,18 @@ namespace SIS_UI
             Console.WriteLine("[5]Schedule");
             Console.WriteLine("[6]Subject");
             Console.Write("Input: ");
-            return Convert.ToInt32(Console.ReadLine());
+            //return Convert.ToInt32(Console.ReadLine());
+            string input = Console.ReadLine();
+            int option;
+
+            while (!int.TryParse(input, out option))
+            {
+                Console.WriteLine("\nInvalid input. Please enter a valid option.");
+                Console.Write("Input: ");
+                input = Console.ReadLine();
+            }
+
+            return option;
         }
 
         //Interface when clicked Personal Information 
@@ -29,7 +40,20 @@ namespace SIS_UI
             Console.WriteLine("[1]View Student Personal Information");
             Console.WriteLine("[2]Update Student Personal Information");
             Console.Write("Input: ");
-            return Convert.ToInt32(Console.ReadLine());
+            //return Convert.ToInt32(Console.ReadLine());
+            string input = Console.ReadLine();
+            int option;
+
+            while (!int.TryParse(input, out option))
+            {
+                Console.WriteLine("\nInvalid input. Please enter a valid option.");
+                Console.Write("Input: ");
+                input = Console.ReadLine();
+            }
+
+            return option;
+
+
         }
 
         //Interface when updating an Personal Information
@@ -164,6 +188,16 @@ namespace SIS_UI
             Console.WriteLine("\n1. Integrative Programming | 8:00AM to 12:30PM");
             Console.WriteLine("2. Object Oriented Programming | 2:00PM to 8:00PM");
             //return Console.ReadLine();
+        }
+
+        public static void cancel()
+        {
+            Console.WriteLine("System detected: Cancel");
+        }
+
+        public static void invalidInput()
+        {
+            Console.WriteLine("\nInvalid input. Please enter a valid option.");
         }
 
     }
