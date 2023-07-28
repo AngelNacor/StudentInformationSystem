@@ -36,27 +36,25 @@ namespace AM_UI
                         break;
                     case 1:
                     case 2:
-                        int action = ShowForm();
-                        switch (action)
-                        {
-                            case 1: //login
-                                    //ifSuccess = Login(status);
-                                    //Console.WriteLine(ifSuccess);
-                                ifSuccess = Login(status);
-                                Console.WriteLine(ifSuccess);
-                                break;
-                            case 2: //Sign in
-                                Register(status);
-                                break;
-                            case 3://Recover
-                                ifSuccess = Recover();
-                                Console.WriteLine(ifSuccess);
-                                break;
-                            default:
-                                Console.WriteLine("Incorrent Input.");
-                                break;
-                        }
-                        break;
+                        //int action = ShowForm();
+                        //switch (action)
+                        //{
+                        //    case 1: //login 
+                        //        ifSuccess = Login(status);
+                        //        Console.WriteLine(ifSuccess);
+                        //        break;
+                        //    case 2: //Sign in
+                        //        Register(status);
+                        //        break;
+                        //    case 3://Recover
+                        //        ifSuccess = Recover();
+                        //        Console.WriteLine(ifSuccess);
+                        //        break;
+                        //    default:
+                        //        Console.WriteLine("Incorrent Input.");
+                        //        break;
+                        //}
+                        //break;
                     case 3:
                         ifSuccess = Login(status);
                         Console.WriteLine(ifSuccess);

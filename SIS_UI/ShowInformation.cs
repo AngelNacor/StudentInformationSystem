@@ -12,7 +12,7 @@ namespace SIS_UI
         
         public static void ShowStudentPersonalInfo(StudentPersonalInfo student)
         {
-            //StudentPersonalInfo student = new StudentPersonalInfo();
+            
 
             Console.WriteLine($"\nSIS Account Number: {student.SISAccountNumber}\n" +
                     $"Full Name: {student.fullname}\n" +
