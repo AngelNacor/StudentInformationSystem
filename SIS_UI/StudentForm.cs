@@ -40,7 +40,20 @@ namespace SIS_UI
             Console.WriteLine("[1]View Student Personal Information");
             Console.WriteLine("[2]Update Student Personal Information");
             Console.Write("Input: ");
-            return Convert.ToInt32(Console.ReadLine());
+            //return Convert.ToInt32(Console.ReadLine());
+            string input = Console.ReadLine();
+            int option;
+
+            while (!int.TryParse(input, out option))
+            {
+                Console.WriteLine("\nInvalid input. Please enter a valid option.");
+                Console.Write("Input: ");
+                input = Console.ReadLine();
+            }
+
+            return option;
+
+
         }
 
         //Interface when updating an Personal Information
