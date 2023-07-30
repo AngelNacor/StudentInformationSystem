@@ -18,7 +18,6 @@ namespace SIS_UI
             Console.WriteLine("[5]Schedule");
             Console.WriteLine("[6]Subject");
             Console.Write("Input: ");
-            //return Convert.ToInt32(Console.ReadLine());
             string input = Console.ReadLine();
             int option;
 
@@ -40,7 +39,6 @@ namespace SIS_UI
             Console.WriteLine("[1]View Student Personal Information");
             Console.WriteLine("[2]Update Student Personal Information");
             Console.Write("Input: ");
-            //return Convert.ToInt32(Console.ReadLine());
             string input = Console.ReadLine();
             int option;
 
@@ -60,7 +58,6 @@ namespace SIS_UI
         public static int actionUpdateStudentPersonalInfo()
         {
             Console.WriteLine("\nCurrent personal information\n");
-            //PrintInfos.PrintStudentPersonalInfo(StudentForm.username);
 
             Console.WriteLine("\nEDIT PERSONAL INFORMATION\n");
             Console.WriteLine("Please choose an action: ");
@@ -119,7 +116,6 @@ namespace SIS_UI
             Console.WriteLine("\nStudent personal information updated successfully.");
             Console.WriteLine("Here's the updated personal information\n");
 
-            //PrintInfos.PrintStudentPersonalInfo(username);
         }
 
         public static void nonEditable()
@@ -154,40 +150,6 @@ namespace SIS_UI
         public static void scheduleMonday()
         {
             Console.WriteLine("\nNo schedule");
-        }
-
-        public static void scheduleTuesday()
-        {
-            Console.WriteLine("\n1. Information Management | 8:00AM to 12:00PM");
-            Console.WriteLine("2. People's Earth & Ecosystem | 2:00PM to 5:00PM");
-            Console.WriteLine("3. Information Management | 5:15PM to 7:00PM");
-        }
-
-        public static void scheduleWednesday()
-        {
-            Console.WriteLine("\nNo schedule");
-            //return Console.ReadLine();
-        }
-
-        public static void scheduleThursday()
-        {
-            Console.WriteLine("\n1. Network Administration | 8:00AM to 1:00PM");
-            Console.WriteLine("2. Physical Education | 4:00PM to 6:00PM");
-            Console.WriteLine("3. Quantitative Method | 6:00PM to 9:00PM");
-            //return Console.ReadLine();
-        }
-
-        public static void scheduleFriday()
-        {
-            Console.WriteLine("\nNo schedule");
-            //return Console.ReadLine();
-        }
-
-        public static void scheduleSaturday()
-        {
-            Console.WriteLine("\n1. Integrative Programming | 8:00AM to 12:30PM");
-            Console.WriteLine("2. Object Oriented Programming | 2:00PM to 8:00PM");
-            //return Console.ReadLine();
         }
 
         public static void cancel()

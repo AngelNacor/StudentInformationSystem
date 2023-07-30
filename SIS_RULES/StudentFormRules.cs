@@ -26,7 +26,6 @@ namespace SIS_RULES
                         FacultyForm.logOut();
                         break;
                     case 1: //student information
-                        //PrintInfos.PrintStudentInfo(StudentForm.username);
                         sql.showStudentInfo(StudentForm.username);
                         actionStudentWelcomePage();
                         break;
@@ -39,11 +38,7 @@ namespace SIS_RULES
                                 StudentForm.cancel();
                                 actionStudentWelcomePage(); break;
                             case 1:
-                                //PrintInfos.PrintStudentPersonalInfo(StudentForm.username);
-                                //SqlClient.showStudentPersonalInfo();
-                                //SqlClient sql = new SqlClient();
                                 sql.showStudentPersonalInfo(StudentForm.username);
-                                //PrintInfos.SqlPrintStudentPersonalInfo();
                                 actionStudentWelcomePage();
                                 break;
                             case 2:
@@ -116,27 +111,27 @@ namespace SIS_RULES
                                 break;
                             case 1:
                                 sql.viewMondaySchedule();
-                                //StudentForm.scheduleMonday();
+                                
                                 break;
                             case 2:
                                 sql.viewTuesdaySchedule();
-                                //StudentForm.scheduleTuesday();
+                                
                                 break;
                             case 3:
                                 sql.viewMondaySchedule();
-                                //StudentForm.scheduleWednesday();
+                                
                                 break;
                             case 4:
                                 sql.viewThursdaySchedule();
-                                //StudentForm.scheduleThursday();
+                                
                                 break;
                             case 5:
                                 sql.viewMondaySchedule();
-                                //StudentForm.scheduleFriday();
+                                
                                 break;
                             case 6:
                                 sql.viewSaturdaySchedule();
-                               //StudentForm.scheduleSaturday();
+                               
                                 break;
                         }
                         actionStudentWelcomePage();
@@ -156,113 +151,6 @@ namespace SIS_RULES
                 }
             } while (status == null);
         }
-
-
-        //Update Place of Birth
-        public static void updatePlaceOfBirth(string sisAccountNumber)
-        {
-            //InMemoryStudentPersonalInfo personalinfo = new InMemoryStudentPersonalInfo();
-            StudentPersonalInfo studentinfo = personalinfo.GetStudentPersonalInfoBySISAccountNumber(sisAccountNumber);
-
-            string placeOfBirth = StudentForm.updatePlaceOfBirth();
-
-            studentinfo.placeofBirth = placeOfBirth;
-
-            StudentForm.successUpdate();
-        }
-
-        public static void doUpdatePOB()
-        {
-            string sisAccount = StudentForm.getSISAcc();
-            updatePlaceOfBirth(sisAccount);
-        }
-
-
-        //Update MObile Number
-        public static void updateMobileNumber(string sisAccountNumber)
-        {
-            //InMemoryStudentPersonalInfo personalinfo = new InMemoryStudentPersonalInfo();
-            StudentPersonalInfo studentinfo = personalinfo.GetStudentPersonalInfoBySISAccountNumber(sisAccountNumber);
-
-            string mobileNumber = StudentForm.updateContactNumber();
-
-            studentinfo.mobileNo = mobileNumber;
-
-            StudentForm.successUpdate();
-        }
-
-        public static void doUpdateMobile()
-        {
-            string sisAccount = StudentForm.getSISAcc();
-            updateMobileNumber(sisAccount);
-        }
-
-        //Update Email Address
-        public static void updateEmailAdd(string sisAccountNumber)
-        {
-            //InMemoryStudentPersonalInfo personalinfo = new InMemoryStudentPersonalInfo();
-            StudentPersonalInfo studentinfo = personalinfo.GetStudentPersonalInfoBySISAccountNumber(sisAccountNumber);
-
-            string emailAddress = StudentForm.updateEmailAddress();
-
-            studentinfo.emailAddress = emailAddress;
-
-            StudentForm.successUpdate();
-        }
-
-        public static void doUpdateEmailAddress()
-        {
-            string sisAccount = StudentForm.getSISAcc();
-            updateEmailAdd(sisAccount);
-        }
-
-
-        //Update Residential Address
-        public static void updateResidentialAdd(string sisAccountNumber)
-        {
-            //InMemoryStudentPersonalInfo personalinfo = new InMemoryStudentPersonalInfo();
-            StudentPersonalInfo studentinfo = personalinfo.GetStudentPersonalInfoBySISAccountNumber(sisAccountNumber);
-
-            string residentialAddress = StudentForm.updateResidentialAdd();
-
-            studentinfo.residentialAddress = residentialAddress;
-
-            StudentForm.successUpdate();
-        }
-
-        public static void doUpdateResidentialAddress()
-        {
-            string sisAccount = StudentForm.getSISAcc();
-            updateResidentialAdd(sisAccount);
-        }
-
-        //Update Permanent Address
-        public static void updatePermanentAdd(string sisAccountNumber)
-        {
-            //InMemoryStudentPersonalInfo personalinfo = new InMemoryStudentPersonalInfo();
-            StudentPersonalInfo studentinfo = personalinfo.GetStudentPersonalInfoBySISAccountNumber(sisAccountNumber);
-
-            string permanentAddress = StudentForm.updatePermanentAdd();
-
-            studentinfo.residentialAddress = permanentAddress;
-
-            StudentForm.successUpdate();
-        }
-
-        public static void doUpdatePermanentAddress()
-        {
-            string sisAccount = StudentForm.getSISAcc();
-            updatePermanentAdd(sisAccount);
-        }
-
-
-        //methods for schedule
-
-
-        
-        //methods for subject
-
-
 
     }
 }

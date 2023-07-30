@@ -16,12 +16,9 @@ namespace SIS_UI
             Console.WriteLine("\nPlease choose an action: ");
             Console.WriteLine("[0]Log out");
             Console.WriteLine("[1]Admin Information");
-            //Console.WriteLine("[2]Personal Information");
             Console.WriteLine("[2]Schedule");
             Console.WriteLine("[3]Subject");
-            //Console.WriteLine("[4]TBA");
             Console.Write("Input: ");
-            //return Convert.ToInt32(Console.ReadLine());
             string input = Console.ReadLine();
             int option;
 
@@ -73,7 +70,7 @@ namespace SIS_UI
 
         public static string updateTime()
         {
-            //Console.ReadKey();
+            
 
             Console.WriteLine("\nEnter new time: ");
             return Console.ReadLine();
@@ -112,7 +109,6 @@ namespace SIS_UI
         public static int addLecture()
         {
             Console.WriteLine("\nEnter lecture: ");
-            //return Convert.ToInt32(Console.ReadLine());
             string input = Console.ReadLine();
             int option;
 
@@ -129,7 +125,6 @@ namespace SIS_UI
         public static int addLaboratory()
         {
             Console.WriteLine("\nEnter laboratory: ");
-            //return Convert.ToInt32(Console.ReadLine());
             string input = Console.ReadLine();
             int option;
 
@@ -146,7 +141,6 @@ namespace SIS_UI
         public static int addUnit()
         {
             Console.WriteLine("\nEnter unit: ");
-            //return Convert.ToInt32(Console.ReadLine());
             string input = Console.ReadLine();
             int option;
 
@@ -181,7 +175,6 @@ namespace SIS_UI
         public static int addNo()
         {
             Console.WriteLine("\nEnter number: ");
-            //return Convert.ToInt32(Console.ReadLine());
             string input = Console.ReadLine();
             int option;
 
@@ -210,7 +203,6 @@ namespace SIS_UI
         public static int addYear()
         {
             Console.WriteLine("\nEnter year: ");
-            //return Convert.ToInt32(Console.ReadLine());
             string input = Console.ReadLine();
             int option;
 
@@ -234,7 +226,6 @@ namespace SIS_UI
         {
             Console.WriteLine("\nLog out Successfully\n");
             Environment.Exit(0);
-            //Console.ReadKey();
         }
 
         public static void addSuccess()

@@ -8,13 +8,11 @@ namespace SIS_UI
             Console.WriteLine("\nPlease choose an action: ");
             Console.WriteLine("[0]Log out");
             Console.WriteLine("[1]Faculty Information");
-            //Console.WriteLine("[2]Personal Information");
             Console.WriteLine("[2]Grading System");
             Console.WriteLine("[3]Attendance");
             Console.WriteLine("[4]Schedule");
             Console.WriteLine("[5]Subject");
             Console.Write("Input: ");
-            //return Convert.ToInt32(Console.ReadLine());
             string input = Console.ReadLine();
             int option;
 
@@ -33,7 +31,6 @@ namespace SIS_UI
         {
             Console.WriteLine("\nLog out Successfully\n");
             Environment.Exit(0);
-            //Console.ReadKey();
         }
 
         //method for calling attendance system

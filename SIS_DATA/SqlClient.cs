@@ -42,7 +42,7 @@ namespace SIS_DATA
             SqlDataReader reader = command.ExecuteReader();
             while (reader.Read())
             {
-                //StudentPersonalInfo student = new StudentPersonalInfo();
+                
                 student.SISAccountNumber = reader.GetString(1);
                 student.fullname = reader.GetString(2);
                 student.Gender = reader.GetString(3);
@@ -53,7 +53,7 @@ namespace SIS_DATA
                 student.residentialAddress = reader.GetString(8);
                 student.permanentAdress = reader.GetString(9);
 
-                //SIS_UI
+               
                 ShowInformation.ShowStudentPersonalInfo(student);
             }
             sqlConnection.Close();
@@ -98,7 +98,7 @@ namespace SIS_DATA
                 facultyInfo.subjectHeld = reader.GetString(3);
                 facultyInfo.email = reader.GetString(4);
 
-                //SIS_UI
+                
                 ShowInformation.showFacultyInfo(facultyInfo);
             }
             sqlConnection.Close();
@@ -582,29 +582,7 @@ namespace SIS_DATA
             sqlConnection.Close();
         }
 
-        //public void showStudentEnrolled()
-        //{
-        //    string course = "BSIT";
-
-        //    string sqlSelect = "SELECT SISAccountNumber,FullName,Course FROM StudentInfo WHERE Course = @Course";
-        //    SqlCommand commands = new SqlCommand(sqlSelect, sqlConnection);
-        //    sqlConnection.Open();
-        //    commands.Parameters.AddWithValue("@Course", course);
-        //    SqlDataReader readers = commands.ExecuteReader();
-        //    while (readers.Read())
-        //    {
-        //        studentInfo.SISAccountNumber = readers.GetString(0);
-        //        studentInfo.fullName = readers.GetString(1);
-        //        studentInfo.course = readers.GetString(2);
-
-        //        ShowInformation.showStudentEnrolled(studentInfo);
-
-        //    }
-        //    sqlConnection.Close();
-        //}
-
-
-
+        
 
         //method for viewing all subject for students
         public void viewSubject(string Course)
@@ -644,7 +622,6 @@ namespace SIS_DATA
             command.Parameters.AddWithValue("@SISAccountNumber", sisAccountNumber);
             command.ExecuteNonQuery();
 
-            //Console.WriteLine("\nPersonal information updated successfully!");
             String message = "Place of birth updated successfully";
             Debug.Print(message);
 
